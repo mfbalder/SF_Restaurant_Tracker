@@ -36,16 +36,19 @@
 			Restaurant: <input type="text" id="restaurant" name="restaurant">
 		</div>
 		<div>
+			Cuisine: <input type="text" id="cuisine" name="cuisine">
+		</div>
+		<div>
 			Neighborhood: <input type="text" id="neighborhood" name="neighborhood">
 		</div>
 		<div>
-			Notable Things to Try: <input type="text" id="to-try" name="to-try">
+			Notable Things to Try: <input type="text" id="notables" name="notables">
 		</div>
 		<div>
-			Have you been here? <input type="checkbox" name="visited" value="visited">
+			Have you been here? <input type="checkbox" name="visited" value="1">
 		</div>
 		<div>
-			If so, did you like it? <input type="checkbox" name="checkbox" value="visited">
+			If so, did you like it? <input type="checkbox" name="opinion" value="1">
 		</div>
 		<div>
 			<input type="submit" value="Submit" id="submit">
@@ -61,6 +64,7 @@
 			alert("wtf");
 			var url = "/display_restaurant?" + $("#add-restaurant").serialize();
 			$("#display-restaurant").load(url);
+			$("#add-restaurant").find("input[type=text], textarea").val("");
 			
 
 		});
