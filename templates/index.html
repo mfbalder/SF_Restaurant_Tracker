@@ -24,6 +24,11 @@
 			top: 50px;
 			padding: 20px;
 		}
+
+		table td {
+			padding: 5px 15px;
+		}
+
 	</style>
 </head>
 <body>
@@ -55,6 +60,8 @@
 		</div>
 	</form>
 
+	<button id="get_unvisited">View Unvisited Restaurants</button>
+
 	<div id="display-restaurant"></div>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -64,9 +71,15 @@
 			alert("wtf");
 			var url = "/display_restaurant?" + $("#add-restaurant").serialize();
 			$("#display-restaurant").load(url);
-			$("#add-restaurant").find("input[type=text], textarea").val("");
-			
+			$("input").val("");
+		});
 
+		$("#get_unvisited").click(function(evt){
+			alert("wtf");
+			// $.get("/display_unvisited_restaurants", function(result){
+			// 	alert(result);
+			// });
+			$("#display-restaurant").load("/display_unvisited_restaurants");
 		});
 	</script>
 

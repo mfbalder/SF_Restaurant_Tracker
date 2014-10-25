@@ -1,0 +1,24 @@
+<!-- <ul id="unvisited_restaurants">
+	{% for restaurant in restos_dict %}
+		<li>{{ restaurant }}</li>
+	{% endfor %}
+</ul> -->
+
+<table id="unvisited_restaurants">
+	<tr>
+		<th>Restaurant</th>
+		<th>Cuisine</th>
+		<th>Neighborhood</th>
+		<th>Things to Try</th>
+	</tr>
+	{% for resto in restos_dict %}
+	<tr>
+		<td>{{ resto }}</td>
+		<td>{{ restos_dict[resto]["cuisine"] }}</td>
+		<td>{{ restos_dict[resto]["neighborhood"] }}</td>
+		<td>{{ ", ".join(restos_dict[resto]["notable_food"]) }}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+

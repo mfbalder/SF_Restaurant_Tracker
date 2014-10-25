@@ -23,10 +23,20 @@ def display_restaurant():
 	for n in notables:
 		database.add_notable(restaurant, n.lower())
 
-	return render_template("display_restaurant.html", 
-		restaurant = restaurant,
-		neighborhood = neighborhood,
-		notables = notables)
+	return "<h3>%s has been added!</h3>" % restaurant
+
+	# return render_template("display_restaurant.html", 
+	# 	restaurant = restaurant,
+	# 	neighborhood = neighborhood,
+	# 	notables = notables)
+
+@app.route("/display_unvisited_restaurants")
+def display_unvisited_restaurants():
+	restos_dict = database.get_unvisited_restaurants()
+	print restos_dict
+	return render_template("display_unvisited_restaurants.html", restos_dict=restos_dict)
+
+
 
 if __name__ == "__main__":
 	app.run(debug=True)
