@@ -81,11 +81,11 @@
 			alert("wtf");
 			var url = "/display_restaurant?" + $("#add-restaurant").serialize();
 			$("#display-restaurant").load(url);
-			$("input").val("");
+			$("input[type=text").val("");
 		});
 
 		$("#get_unvisited").click(function(evt){
-			alert("wtf");
+			// alert("wtf");
 			// $.get("/display_unvisited_restaurants", function(result){
 			// 	alert(result);
 			// });

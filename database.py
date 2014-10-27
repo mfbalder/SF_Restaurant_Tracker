@@ -10,10 +10,19 @@ def connect():
 
 def add_restaurant(restaurant, cuisine, neighborhood, have_visited, opinion):
 	connect()
-	query = """INSERT INTO restaurants VALUES (?, ?, ?, ?, ?)"""
-	DB.execute(query, (restaurant, cuisine, neighborhood, have_visited, opinion))
-	CONN.commit()
-	print "%s has been added" % restaurant
+	# try:
+	# 	query = """SELECT name FROM restaurants WHERE name = ?"""
+	# 	DB.execute(query, (restaurant,))
+	# 	print "Already in the database!"
+	query = """SELECT name FROM restaurants WHERE name = ?"""
+	DB.execute(query, (restaurant,))
+	if DB.fetchone() is not None:
+		return 0
+	else:
+		query = """INSERT INTO restaurants VALUES (?, ?, ?, ?, ?)"""
+		DB.execute(query, (restaurant, cuisine, neighborhood, have_visited, opinion))
+		CONN.commit()
+		print "%s has been added" % restaurant
 
 def add_notable(restaurant, notable):
 	connect()

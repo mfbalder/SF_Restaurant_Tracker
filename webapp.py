@@ -15,15 +15,23 @@ def display_restaurant():
 	notables = request.args.get("notables").split(",")
 	visited_status = request.args.get("visited")
 	opinion = request.args.get("opinion")
+
+	if not restaurant or not cuisine or not neighborhood:
+		return "Please provide a restaurant, cuisine, and neighborhood."
+		
 	if not visited_status:
 		visited_status = 0
 	if not opinion:
 		opinion = 0
-	database.add_restaurant(restaurant, cuisine, neighborhood, visited_status, opinion)
-	for n in notables:
-		database.add_notable(restaurant, n.lower())
 
-	return "<h3>%s has been added!</h3>" % restaurant
+	add_resto = database.add_restaurant(restaurant, cuisine, neighborhood, visited_status, opinion)
+	if add_resto != 0:
+		for n in notables:
+			database.add_notable(restaurant, n.lower())
+
+		return "<h3>%s has been added!</h3>" % restaurant
+	else:
+		return "<h3>%s is already in the system.</h3>" % restaurant
 
 	# return render_template("display_restaurant.html", 
 	# 	restaurant = restaurant,
